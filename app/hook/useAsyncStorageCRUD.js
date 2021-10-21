@@ -5,10 +5,11 @@ import useAppContext from "./useAppContext";
 export default function useAsyncStorageCRUD(){
 
     const {state:{toDoList} ,dispatch} = useAppContext();
+    
     function toDoListChange(newList){
         dispatch({type:"TO_DO_LIST_CHANGE", toDoList:newList });
     }
-    React.useEffect(()=>{AsyncStorage.getItem('todoList').then((savedToDoList)=>{
+    React.useEffect(()=>{AsyncStorage.getItem('todolist').then((savedToDoList)=>{
         if(savedToDoList){
             toDoListChange(JSON.parse(savedToDoList))
         }
@@ -25,14 +26,12 @@ export default function useAsyncStorageCRUD(){
     async function toDoDelete(index) {
         const newToDoList = [...toDoList];
         newToDoList.splice(index,1);
-        newToDoList .push(toDo);
         await AsyncStorage.setItem("todolist",JSON.stringify(newToDoList));
         toDoListChange(newToDoList);
     }
     async function toDoUpdate(index,toDo) {
         const newToDoList = [...toDoList];
         newToDoList.splice(index,1, toDo);
-        newToDoList .push(toDo);
         await AsyncStorage.setItem("todolist",JSON.stringify(newToDoList));
         toDoListChange(newToDoList);
     }

@@ -6,6 +6,8 @@ import Hello from "@component/Hello"
 import Navigation from "@navigation/Navigation";
 import{AppStateProvider} from "./app/state/AppContext";
 
+
+
 export default function App() {
  Hello();
   return (

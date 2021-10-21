@@ -11,7 +11,7 @@ export default function useNewToDoManage() {
         {
         value: title,
         onChange:(e)=> titleChange(e),
-        placeholder:"Noms du produit"
+        placeholder:"Nom du produit"
     },
          {
              value: description,
@@ -23,10 +23,10 @@ export default function useNewToDoManage() {
         if (title.length === 0) {
             return alert("Il manque le nom du produit");
         }
-        if (description.length === 0){
-            return alert("Il manque la quantité de produit");
-        }
-        await toDoCreate({title, description});
+        // if (description.length === 0){
+        //     return alert("Il manque la quantité de produit");
+        // }
+        await toDoCreate({title, description, checked:false});
         titleChange("");
         descriptionChange("");
     }

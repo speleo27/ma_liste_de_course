@@ -4,14 +4,16 @@ import {StyleSheet, View,Text} from "react-native";
 import Input from '@component/UI/Input';
 import Button from '@component/UI/Button';
 import useNewToDoManage from '@hook/useNewToDoManage';
+import Title from "@component/UI/Title";
 
-export function TodoCreate({navigation}) {
+export default function TodoCreate({navigation}) {
     const {fieldsTab, handleSubmit} = useNewToDoManage();
     function handlePress(){
         navigation.navigate("Home")
     }
     return(
     <View style={styles.container} presentation="modal">
+        <Title>Ajouter un produit </Title>
         {fieldsTab.map(({value, onChange, placeholder})=>{
             return(
             <Input key={placeholder}
@@ -30,6 +32,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding:16,
-        backgroundColor:"rgba(0,0,0,0.1)"
+        backgroundColor:"#f7f3e9"
     },
 });

@@ -14,6 +14,7 @@ export default function Button({children, onPress}){
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:"#007AFF", borderRadius:14, width:"100%", alignItems:"center"},
+        backgroundColor:"#007AFF", borderRadius:14, width:"100%", alignItems:"center",marginTop:32,
+    },
     title:{color:"white", margin:17 ,fontSize:17,fontWeight:"600" }
 });

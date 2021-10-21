@@ -1,25 +1,43 @@
 import React from "react";
 
 
-import {StyleSheet, View,Text} from "react-native";
+import {StyleSheet, } from "react-native";
 import Button from "@component/UI/Button";
 import useAsyncStorageCRUD from "@hook/useAsyncStorageCRUD";
+
+import ToDoCards from "@component/ToDoCards";
+import Title from "@component/UI/Title";
+import {ScrollView} from "react-native-gesture-handler";
+
 export default function Home({navigation}){
-    const {toDoList} = useAsyncStorageCRUD();
+    const {toDoList, toDoDelete,toDoUpdate} = useAsyncStorageCRUD();
     function handlePress(){
         navigation.navigate("Ajouter un article ")    }
     return(
-    <View style={styles.container}>
-        {toDoList.map(({title, description},index)=>{
+       
+    <ScrollView contentContainerStyle={styles.container}>
+        <Title>Ma liste de course</Title>
+        {toDoList.map(({title, description,checked},index)=>{
+            function handleDelete(){
+                toDoDelete(index);
+            }
+            function handleCheckedChange(){
+                toDoUpdate(index,{title,description, checked:!checked});
+            }
             return (
-                <View key={index}>
-                    <Text>{title}</Text>
-                    <Text>{description}</Text>
-                </View>
+                <ToDoCards
+                    key={index}
+                    title={title}
+                    description={description}
+                    checked={checked}
+                    handleDelete={handleDelete}
+                    handleCheckedChange={handleCheckedChange}
+                />
+
             );
         })}
         <Button onPress={handlePress}>+ Ajouter un produit a la liste</Button>
-    </View>)
+    </ScrollView>)
 
 }
 const styles = StyleSheet.create({
