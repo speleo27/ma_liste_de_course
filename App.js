@@ -2,12 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Hello from "@component/Hello"
+import Navigation from "@navigation/Navigation";
+import{AppStateProvider} from "./app/state/AppContext";
+
 export default function App() {
+ Hello();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <AppStateProvider>
+        <Navigation/>
+    </AppStateProvider>
+
   );
 }
 
